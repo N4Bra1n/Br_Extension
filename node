@@ -1,0 +1,16 @@
+var login = require("facebook-chat-api");
+ 
+var answeredThreads = {};
+ 
+// Create simple echo bot
+login({email: "phongtk289@yahoo.com", password: "opi01022001"}, function callback (err, api) {
+    if(err) return console.error(err);
+ 
+    api.listen(function callback(err, message) {
+        console.log(message.threadID);
+        if(!answeredThreads.hasOwnProperty(message.threadID)){
+            answeredThreads[message.threadID] = true;
+            api.sendMessage("Autoreply N4uB Hiiiii :v Em đang bận :/ Đợi em xíu :D ", message.threadID);
+        }
+    });
+});
